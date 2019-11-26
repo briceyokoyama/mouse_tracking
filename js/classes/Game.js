@@ -5,9 +5,9 @@ export default class Game {
   constructor() {
     this.target = MovingObject.createRandom()
 
-    this.move = this.move.bind(this);
-    this.draw = this.draw.bind(this);
-    this.tick = this.tick.bind(this);
+    this.move = this.move.bind(this)
+    this.draw = this.draw.bind(this)
+    this.tick = this.tick.bind(this)
   }
 
   move() {

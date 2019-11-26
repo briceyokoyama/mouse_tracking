@@ -1,6 +1,7 @@
 import Canvas from '../utility/Canvas.js'
 
 export default class MovingObject {
+  
   constructor(position, velocity) {
     this.position = position
     this.velocity = velocity
@@ -10,7 +11,7 @@ export default class MovingObject {
   static createRandom() {
     const position = {
       x: 250,
-      y: 250
+      y: Math.random() * 250 + 250
     }
 
     const velocity = {
