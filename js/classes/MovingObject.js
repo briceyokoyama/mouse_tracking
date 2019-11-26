@@ -1,24 +1,33 @@
-import Canvas from "../utility/Canvas.js";
+import Canvas from '../utility/Canvas.js'
 
 export default class MovingObject {
-  constructor() {
-    this.position = {
+  constructor(position, velocity) {
+    this.position = position
+    this.velocity = velocity
+    this.radius = 20
+  }
+
+  static createRandom() {
+    const position = {
       x: 250,
       y: 250
     }
-    this.velocity = {
-      x: 1,
-      y: 1
+
+    const velocity = {
+      x: Math.random() * 2 - 1,
+      y: Math.random() * 2 - 1
     }
-    this.radius = 20;
+
+    return new MovingObject(position, velocity)
+
   }
 
   move() {
-    this.position.x += this.velocity.x;
-    this.position.y += this.velocity.y;
+    this.position.x += this.velocity.x
+    this.position.y += this.velocity.y
   }
 
   draw() {
-    Canvas.drawCircle({x: this.position.x, y: this.position.y, radius: this.radius});
+    Canvas.drawCircle({x: this.position.x, y: this.position.y, radius: this.radius})
   }
 }
