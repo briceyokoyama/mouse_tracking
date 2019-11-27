@@ -11,7 +11,11 @@ export default class Vec2 {
     })
   }
 
-  
+  set(object) {
+    this.x = object.x
+    this.y = object.y
+  }
+
   distance(vector) {
     return Math.sqrt(Math.pow(this.x - vector.x, 2) + Math.pow(this.y - vector.y, 2))
   }

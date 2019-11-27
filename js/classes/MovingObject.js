@@ -1,5 +1,5 @@
 import Canvas from '../utility/Canvas.js'
-import Vec2 from '../../../asteroids/js/classes/Vec2.js'
+import Vec2 from './Vec2.js'
 
 export default class MovingObject {
   
@@ -16,8 +16,8 @@ export default class MovingObject {
     }
 
     const velocity = {
-      x: Math.random() * 2 - 1,
-      y: Math.random() * 2 - 1
+      x: Math.random() * 10 - 5,
+      y: Math.random() * 10 - 5
     }
 
     return new MovingObject(position, velocity)
@@ -41,5 +41,10 @@ export default class MovingObject {
     if (this.position.y + this.radius > Canvas.height() || this.position.y - this.radius <= 0) {
       this.velocity.y = -this.velocity.y
     }
+  }
+
+  checkInObject(vector) {
+    // console.log(vector)
+    return this.position.distance(vector) < this.radius
   }
 }
