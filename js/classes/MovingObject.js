@@ -7,6 +7,8 @@ export default class MovingObject {
     this.position = new Vec2(position)
     this.velocity = new Vec2(velocity)
     this.radius = 20
+
+    this.checkInObject = this.checkInObject.bind(this)
   }
 
   static createRandom() {
@@ -43,8 +45,11 @@ export default class MovingObject {
     }
   }
 
-  checkInObject(vector) {
-    // console.log(vector)
-    return this.position.distance(vector) < this.radius
+  checkInObject(e) {
+    const clickPosition = new Vec2({
+      x: e.clientX - e.target.offsetLeft,
+      y: e.clientY - e.target.offsetTop
+    })
+    return this.position.distance(clickPosition) < this.radius
   }
 }

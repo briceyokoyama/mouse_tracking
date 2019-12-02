@@ -1,14 +1,13 @@
 import MovingObject from './MovingObject'
 import Canvas from '../utility/Canvas'
-import Pointer from './Pointer'
 
 export default class Game {
   constructor() {
     this.target = MovingObject.createRandom()
-    this.pointer = Pointer.initialize()
     this.score = 0
 
     this.tick = this.tick.bind(this)
+    this.updateScore = this.updateScore.bind(this)
   }
 
   move() {
@@ -24,17 +23,16 @@ export default class Game {
     this.target.move()
     this.target.draw()
     this.target.checkCollision()
-    this.updateScore(this.target.checkInObject(this.pointer.position))
     Canvas.drawScore(this.score)
     window.requestAnimationFrame(this.tick)
   }
 
-  updateScore(pointerInTarget) {
-    if (pointerInTarget) this.score++
+  updateScore(e) {
+    if (this.target.checkInObject(e)) this.score++
   }
 
   start() {
     this.tick()
-    Canvas.addListener(this.pointer.updatePosition)
+    Canvas.addListener(this.updateScore)
   }
 }

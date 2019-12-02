@@ -3,10 +3,10 @@ const context = canvas.getContext('2d')
 const { PI } = Math
 
 export default {
-  drawCircle({ x, y, radius = 20, color = 'white', lineWidth = 2 }) {
+  drawCircle({ x, y, radius = 20, color = 'white', lineWidth = 4 }) {
     context.beginPath()
 
-    context.lineWdith = lineWidth
+    context.lineWidth = lineWidth
     context.strokeStyle = color
     context.arc(x, y, radius, 0, 2 * PI)
 
@@ -23,7 +23,7 @@ export default {
     return canvas.height
   },
   addListener(func) {
-    canvas.addEventListener('mousemove', func)
+    canvas.addEventListener('mousedown', func)
   },
   drawScore(score) {
     context.textAlign = 'end'
