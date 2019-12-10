@@ -24,7 +24,17 @@ export default class Game {
   tick() {
     this.target.move();
     this.target.checkCollision();
-    console.log(this.target.position);
+
+    Object.keys(this.sockets).forEach((playerID) => {
+      const socket = this.sockets[playerID];
+      socket.emit('update', this.createUpdate());
+    });
+  }
+
+  createUpdate() {
+    return {
+      target: this.target.serializeForUpdate(),
+    };
   }
 
   start() {

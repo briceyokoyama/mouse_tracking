@@ -49,4 +49,11 @@ export default class MovingObject {
     });
     return this.position.distance(clickPosition) < this.radius;
   }
+
+  serializeForUpdate() {
+    return {
+      x: this.position.x,
+      y: this.position.y,
+    };
+  }
 }
