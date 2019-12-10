@@ -24,6 +24,7 @@ export default class Game {
   tick() {
     this.target.move();
     this.target.checkCollision();
+    console.log(this.target.position);
   }
 
   start() {
