@@ -37,6 +37,12 @@ export default class Game {
     };
   }
 
+  handleClick(click) {
+    if (this.target.checkInObject(click)) {
+      this.target = MovingObject.createRandom();
+    }
+  }
+
   start() {
     this.tick();
   }

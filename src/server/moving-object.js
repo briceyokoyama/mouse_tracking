@@ -6,15 +6,15 @@ export default class MovingObject {
   constructor(position, velocity) {
     this.position = new Vec2(position);
     this.velocity = new Vec2(velocity);
-    this.radius = 20;
+    this.radius = Constants.targetRadius;
 
     this.checkInObject = this.checkInObject.bind(this);
   }
 
   static createRandom() {
     const position = {
-      x: 250,
-      y: 250,
+      x: Math.random() * Constants.canvasWidth / 4 + Constants.canvasWidth / 2,
+      y: Math.random() * Constants.canvasHeight / 4 + Constants.canvasHeight / 2,
     };
 
     const velocity = {
@@ -42,10 +42,10 @@ export default class MovingObject {
     }
   }
 
-  checkInObject(e) {
+  checkInObject(click) {
     const clickPosition = new Vec2({
-      x: e.clientX - e.target.offsetLeft,
-      y: e.clientY - e.target.offsetTop,
+      x: click.x,
+      y: click.y,
     });
     return this.position.distance(clickPosition) < this.radius;
   }

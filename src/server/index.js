@@ -29,6 +29,10 @@ io.on('connection', (socket) => {
 
   joinGame(socket);
 
+  socket.on('click', (click) => {
+    game.handleClick(click);
+  });
+
   socket.on('disconnect', () => {
     console.log('A player disconnected!', socket.id);
   });

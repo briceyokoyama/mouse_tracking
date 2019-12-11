@@ -10,8 +10,12 @@ const connectedPromise = new Promise((resolve) => {
   });
 });
 
-export default () => {
+export const connect = () => {
   connectedPromise.then(() => {
     socket.on('update', processGameUpdate);
   });
+};
+
+export const sendClick = (click) => {
+  socket.emit('click', click);
 };

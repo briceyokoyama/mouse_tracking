@@ -31,6 +31,9 @@ export default {
   addListener(func) {
     canvas.addEventListener('mousedown', func);
   },
+  removeListener(func) {
+    canvas.removeEventListener('mousedown', func);
+  },
   drawScore(score) {
     context.textAlign = 'end';
     context.font = '18px Orbitron';
