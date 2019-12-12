@@ -13,8 +13,8 @@ export default class MovingObject {
 
   static createRandom() {
     const position = {
-      x: Math.random() * Constants.canvasWidth / 4 + Constants.canvasWidth / 2,
-      y: Math.random() * Constants.canvasHeight / 4 + Constants.canvasHeight / 2,
+      x: (Math.random() * Constants.canvasWidth) / 4 + Constants.canvasWidth / 2,
+      y: (Math.random() * Constants.canvasHeight) / 4 + Constants.canvasHeight / 2,
     };
 
     const velocity = {
