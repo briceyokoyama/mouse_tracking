@@ -1,9 +1,10 @@
 module.exports = {
   'env': {
       'browser': true,
-      'es6': true
+      'es6': true,
+      'node': true
   },
-  'extends': 'eslint:recommended',
+  'extends': 'airbnb-base',
   'parser': 'babel-eslint',
   'parserOptions': {
       'ecmaVersion': 2018,
@@ -12,26 +13,4 @@ module.exports = {
   'plugins': [
       'babel',
   ],
-  'rules': {
-      'indent': [
-          'error',
-          2
-      ],
-      'linebreak-style': [
-          'error',
-          'unix'
-      ],
-      'quotes': [
-          'error',
-          'single'
-      ],
-      'semi': [
-          'error',
-          'never'
-      ],
-      'comma-dangle': [
-          'error',
-          'only-multiline'
-      ]
-  }
 }

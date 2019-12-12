@@ -1,28 +1,28 @@
-/* eslint-env node */
-const path = require('path')
+const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
-module.exports = {
-  mode: 'development',
-  devtool: 'inline-source-map',
-  devServer: {
-    contentBase: path.join(__dirname),
-    publicPath: '/build/',
+const backConfig = {
+  target: 'node',
+  entry: {
+    app: ['./src/server/index.js'],
   },
-  entry: './js/index.js',
   output: {
-    filename: 'bundle.js',
     path: path.resolve(__dirname, 'build'),
+    filename: 'bundle-back.js',
   },
-  resolve: {
-    alias: {
-      /* eslint-disable key-spacing */
-      js:      path.resolve(__dirname, 'js'),
-      classes: path.resolve(__dirname, 'js', 'classes'),
-      utility: path.resolve(__dirname, 'js', 'utility'),
-      /* eslint-enable key-spacing */
-    },
+  externals: [nodeExternals()],
+};
+
+const frontConfig = {
+  target: 'web',
+  entry: {
+    app: ['./src/client/index.js'],
   },
-  module: {
-    rules: [],
+  output: {
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle-front.js',
   },
-}
+  devtool: 'inline-source-map',
+};
+
+module.exports = [frontConfig, backConfig];
