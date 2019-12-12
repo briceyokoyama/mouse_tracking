@@ -1,4 +1,5 @@
 import MovingObject from './moving-object';
+import Player from './player';
 
 export default class Game {
   constructor() {
@@ -11,6 +12,7 @@ export default class Game {
 
   addPlayer(socket) {
     this.sockets[socket.id] = socket;
+    this.players[socket.id] = new Player(socket.id);
   }
 
   removePlayer(socket) {
@@ -37,9 +39,16 @@ export default class Game {
     };
   }
 
-  handleClick(click) {
+  handleClick(click, socket) {
     if (this.target.checkInObject(click)) {
       this.target = MovingObject.createRandom();
+      const currSocket = this.sockets[socket.id];
+      const player = this.players[socket.id];
+      player.incrementScore();
+      currSocket.emit('points', {
+        msg: 'you scored a point!',
+        totalPoints: player.getScore(),
+      });
     }
   }
 

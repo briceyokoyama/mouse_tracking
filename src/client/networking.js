@@ -13,6 +13,7 @@ const connectedPromise = new Promise((resolve) => {
 export const connect = () => {
   connectedPromise.then(() => {
     socket.on('update', processGameUpdate);
+    socket.on('points', (data) => console.log(data));
   });
 };
 

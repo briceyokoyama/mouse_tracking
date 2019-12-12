@@ -20,7 +20,6 @@ server.listen(3000, () => {
 const game = new Game();
 
 const joinGame = (socket) => {
-  console.log(socket);
   game.addPlayer(socket);
 };
 
@@ -30,7 +29,7 @@ io.on('connection', (socket) => {
   joinGame(socket);
 
   socket.on('click', (click) => {
-    game.handleClick(click);
+    game.handleClick(click, socket);
   });
 
   socket.on('disconnect', () => {
