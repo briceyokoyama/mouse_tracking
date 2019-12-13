@@ -17,6 +17,7 @@ export default class Game {
 
   removePlayer(socket) {
     delete this.sockets[socket.id];
+    delete this.players[socket.id];
   }
 
   move() {
@@ -29,13 +30,14 @@ export default class Game {
 
     Object.keys(this.sockets).forEach((playerID) => {
       const socket = this.sockets[playerID];
-      socket.emit('update', this.createUpdate());
+      socket.emit('update', this.createUpdate(this.getLeaderboard()));
     });
   }
 
-  createUpdate() {
+  createUpdate(leaders) {
     return {
       target: this.target.serializeForUpdate(),
+      leaders,
     };
   }
 
@@ -54,5 +56,12 @@ export default class Game {
 
   start() {
     this.tick();
+  }
+
+  getLeaderboard() {
+    return Object.values(this.players)
+      .sort((p1, p2) => p2.score - p1.score)
+      .slice(0, 5)
+      .map((p) => ({ username: p.username, score: p.getScore() }));
   }
 }

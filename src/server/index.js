@@ -23,6 +23,10 @@ const joinGame = (socket) => {
   game.addPlayer(socket);
 };
 
+const leaveGame = (socket) => {
+  game.removePlayer(socket);
+};
+
 io.on('connection', (socket) => {
   console.log('A player connected!', socket.id);
 
@@ -33,6 +37,6 @@ io.on('connection', (socket) => {
   });
 
   socket.on('disconnect', () => {
-    console.log('A player disconnected!', socket.id);
+    console.log('A player disconnected!', leaveGame(socket));
   });
 });

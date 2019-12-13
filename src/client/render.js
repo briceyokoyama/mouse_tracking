@@ -1,11 +1,13 @@
 import { getCurrentState } from './state';
 import Canvas from './canvas';
+import Leaderboard from './leaderboard';
 
 function render() {
-  const { target } = getCurrentState();
+  const { target, leaders } = getCurrentState();
 
   Canvas.clear();
   Canvas.drawCircle(target);
+  Leaderboard.updateLeaderboard(leaders);
 }
 
 export default () => {

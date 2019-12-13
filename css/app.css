@@ -22,7 +22,16 @@ canvas {
   border: 2px solid white;
 }
 
-#score-board {
+#leaderboard {
+  font-family: 'Orbitron';
+  min-width: 250px;
+  min-height: 500px;
   color: white;
-  z-index: 1;
+  border: 2px solid white;
+}
+
+#leaderboard div {
+  padding: 10px 0 10px 0;
+  text-align: center;
+  border-bottom: 1px solid white;
 }
