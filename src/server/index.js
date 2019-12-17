@@ -19,21 +19,26 @@ server.listen(3000, () => {
 
 const game = new Game();
 
-const joinGame = (socket) => {
-  console.log(socket);
-  game.addPlayer(socket);
+const joinGame = (socket, username) => {
+  game.addPlayer(socket, username);
+};
+
+const leaveGame = (socket) => {
+  game.removePlayer(socket);
 };
 
 io.on('connection', (socket) => {
   console.log('A player connected!', socket.id);
 
-  joinGame(socket);
+  socket.on('add user', (username) => {
+    joinGame(socket, username);
+  });
 
   socket.on('click', (click) => {
-    game.handleClick(click);
+    game.handleClick(click, socket);
   });
 
   socket.on('disconnect', () => {
-    console.log('A player disconnected!', socket.id);
+    console.log('A player disconnected!', leaveGame(socket));
   });
 });

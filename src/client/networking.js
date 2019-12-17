@@ -10,9 +10,11 @@ const connectedPromise = new Promise((resolve) => {
   });
 });
 
-export const connect = () => {
+export const connect = (username) => {
   connectedPromise.then(() => {
+    socket.emit('add user', { username });
     socket.on('update', processGameUpdate);
+    socket.on('points', (data) => console.log(data));
   });
 };
 
