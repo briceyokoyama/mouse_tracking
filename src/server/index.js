@@ -19,8 +19,8 @@ server.listen(3000, () => {
 
 const game = new Game();
 
-const joinGame = (socket) => {
-  game.addPlayer(socket);
+const joinGame = (socket, username) => {
+  game.addPlayer(socket, username);
 };
 
 const leaveGame = (socket) => {
@@ -30,7 +30,9 @@ const leaveGame = (socket) => {
 io.on('connection', (socket) => {
   console.log('A player connected!', socket.id);
 
-  joinGame(socket);
+  socket.on('add user', (username) => {
+    joinGame(socket, username);
+  });
 
   socket.on('click', (click) => {
     game.handleClick(click, socket);

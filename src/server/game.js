@@ -10,9 +10,9 @@ export default class Game {
     setInterval(this.tick.bind(this), 1000 / 60);
   }
 
-  addPlayer(socket) {
+  addPlayer(socket, username) {
     this.sockets[socket.id] = socket;
-    this.players[socket.id] = new Player(socket.id);
+    this.players[socket.id] = new Player(username.username);
   }
 
   removePlayer(socket) {
