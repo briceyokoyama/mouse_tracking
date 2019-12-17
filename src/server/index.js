@@ -6,6 +6,8 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 
+const port = process.env.PORT || 3000;
+
 app.use(express.static('build'));
 app.use(express.static('css'));
 
@@ -13,8 +15,8 @@ app.get('/', (req, res) => {
   res.sendFile('index.html', { root: './' });
 });
 
-server.listen(3000, () => {
-  console.log('listening on port 3000');
+server.listen(port, () => {
+  console.log(`listening on port ${port}`);
 });
 
 const game = new Game();
