@@ -15,7 +15,8 @@ export default {
     context.lineWidth = lineWidth;
     context.strokeStyle = color;
     context.arc(x, y, radius, 0, 2 * PI);
-
+    context.fillStyle = color;
+    context.fill();
     context.closePath();
     context.stroke();
   },
